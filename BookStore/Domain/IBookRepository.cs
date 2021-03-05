@@ -7,6 +7,7 @@ namespace BookStore.Models
 {
     public interface IBookRepository
     {
-        Book[] GetAllByTitle(string titlePart);
+        Book[] GetAllByISBN(string isbn);
+        Book[] GetAllByTitleOrAuthor(string titleOrAuthor);
     }
 }
