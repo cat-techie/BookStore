@@ -7,5 +7,6 @@ namespace BookStore.Models
 {
     interface IBookRepository
     {
+        Book[] GetAllByTitle(string titlePart);
     }
 }
