@@ -10,8 +10,9 @@ namespace BookStore.Models
         public int ID { get; }
         public string Title { get; }
 
-        public Book(string title)
+        public Book(int id, string title)
         {
+            ID = id;
             Title = title;
         }
     }
