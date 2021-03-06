@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<BookStore.Models.Book>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Результаты поиска";
 }
 
-<h1>Index</h1>
+<h1>Результаты поиска</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -17,18 +17,14 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ID)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Author)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ISBN)
+                @Html.DisplayNameFor(model => model.Price)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -36,21 +32,14 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
+                    <a href="@Url.Action("Index", "Book", new { id = item.ID })">@Html.DisplayFor(modelItem => item.Title)</a>
+                    
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Author)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ISBN)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.DisplayFor(modelItem => item.Price) ₽
                 </td>
             </tr>
         }

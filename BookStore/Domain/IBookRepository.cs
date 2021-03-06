@@ -9,5 +9,6 @@ namespace BookStore.Models
     {
         Book[] GetAllByISBN(string isbn);
         Book[] GetAllByTitleOrAuthor(string titleOrAuthor);
+        Book GetById(int id);
     }
 }
