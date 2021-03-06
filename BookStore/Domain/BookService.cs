@@ -33,7 +33,6 @@ namespace BookStore.Domain
                 return false;
             }
 
-
             checkedStr = checkedStr.Replace("-", "")
                                    .Replace(" ", "")
                                    .ToUpper();
