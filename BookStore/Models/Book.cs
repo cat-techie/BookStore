@@ -11,13 +11,17 @@ namespace BookStore.Models
         public string Title { get; }
         public string Author { get; }
         public string ISBN { get; }
+        public string Description { get; }
+        public decimal Price { get; }
 
-        public Book(int id, string title, string author, string isbn)
+        public Book(int id, string title, string author, string isbn, string description, decimal price)
         {
             ID = id;
             Title = title;
             Author = author;
             ISBN = isbn;
+            Description = description;
+            Price = price;
         }
     }
 }
