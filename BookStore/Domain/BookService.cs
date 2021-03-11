@@ -16,6 +16,11 @@ namespace BookStore.Domain
             this.bookRepository = bookRepository;
         }
 
+        public Book[] GetBooks()
+        {
+            return bookRepository.GetAllBooks();
+        }
+
         public Book[] GetAllByQuery(string query)
         {
             if (IsISBN(query))

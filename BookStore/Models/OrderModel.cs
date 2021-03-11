@@ -5,17 +5,11 @@ using System.Threading.Tasks;
 
 namespace BookStore.Models
 {
-    public class Cart
+    public class OrderModel
     {
-        public int OrderID { get; }
+        public int ID { get; set; }
+        public OrderItemModel[] Items { get; set; } = new OrderItemModel[0];
         public int TotalCount { get; set; }
         public decimal TotalPrice { get; set; }
-
-        public Cart(int orderID)
-        {
-            OrderID = orderID;
-            TotalCount = 0;
-            TotalPrice = 0m;
-        }
     }
 }
