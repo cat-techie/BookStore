@@ -10,5 +10,7 @@ namespace BookStore.Models
         Book[] GetAllByISBN(string isbn);
         Book[] GetAllByTitleOrAuthor(string titleOrAuthor);
         Book GetById(int id);
+        Book[] GetAllByIDs(IEnumerable<int> bookIDs);
+        Book[] GetAllBooks();
     }
 }
