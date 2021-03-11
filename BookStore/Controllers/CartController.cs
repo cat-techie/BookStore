@@ -1,4 +1,5 @@
-﻿using BookStore.Models;
+﻿using BookStore.Domain;
+using BookStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,26 +11,35 @@ namespace BookStore.Controllers
     public class CartController : Controller
     {
         private readonly IBookRepository bookRepository;
+        private readonly IOrderRepository orderRepository;
 
-        public CartController(IBookRepository bookRepository)
+        public CartController(IBookRepository bookRepository, IOrderRepository orderRepository)
         {
             this.bookRepository = bookRepository;
+            this.orderRepository = orderRepository;
         }
+
         public IActionResult Add(int id)
         {
-            var book = bookRepository.GetById(id);
-            if (!HttpContext.Session.TryGetCart(out Cart cart))
-                cart = new Cart();
+            Order order;
+            Cart cart;
 
-            if (cart.Items.ContainsKey(id))
+            if (HttpContext.Session.TryGetCart(out cart))
             {
-                cart.Items[id]++;
+                order = orderRepository.GetByID(cart.OrderID);
             }
             else
             {
-                cart.Items[id] = 1;
+                order = orderRepository.Create();
+                cart = new Cart(order.ID);
             }
-            cart.Amount += book.Price;
+
+            var book = bookRepository.GetById(id);
+            order.AddItem(book, 1);
+            orderRepository.Update(order);
+
+            cart.TotalCount = order.TotalCount;
+            cart.TotalPrice = order.TotalPrice;
 
             HttpContext.Session.Set(cart);
 

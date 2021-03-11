@@ -17,13 +17,19 @@
             </form>
             <span class="navbar-text ml-auto">
                 @{
-                    Cart cart;
-                    if (!Context.Session.TryGetCart(out cart))
+                    if (Context.Session.TryGetCart(out Cart cart) && cart.TotalCount > 0)
                     {
-                        cart = new Cart();
+                        <a href="">
+                            Корзина: @cart.TotalCount <br />
+                            Сумма: @cart.TotalPrice
+                        </a>
+
                     }
-                    @: Корзина: @cart.Items.Count
-                    @: Сумма: @cart.Amount
+                    else
+                    {
+                        @: Корзина пуста
+                    }
+
                 }
             </span>
 

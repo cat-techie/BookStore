@@ -7,7 +7,15 @@ namespace BookStore.Models
 {
     public class Cart
     {
-        public IDictionary<int, int> Items { get; set; } = new Dictionary<int, int>();
-        public decimal Amount { get; set; }
+        public int OrderID { get; }
+        public int TotalCount { get; set; }
+        public decimal TotalPrice { get; set; }
+
+        public Cart(int orderID)
+        {
+            OrderID = orderID;
+            TotalCount = 0;
+            TotalPrice = 0m;
+        }
     }
 }
